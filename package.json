@@ -1,0 +1,19 @@
+{
+  "name": "backend-restful",
+  "version": "1.0.0",
+  "description": "la anh quan backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "la anh quan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}
