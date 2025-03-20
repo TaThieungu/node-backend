@@ -1,30 +1,17 @@
-const express = require('express') //commonjs
-const path = require('path') //commonjs
 require('dotenv').config();
-
-// import express from 'express' ;  //es modules
-
+const express = require('express') //commonjs
+const configViewEngine = require('./config/viewEngine')
 
 const app = express()
 const port = process.env.PORT || 8888;//port => hartcode . uat .pord
 const hostname = process.env.HOST_NAME;
-
+const webRoutes = require('./routes/web')
 
 //config template engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs')
-
+configViewEngine(app);
 
 //khai báo route
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-
-app.get('/abc', (req, res) => {
-    // res.send('Hello ABC')
-    res.render('sample.ejs')
-})
+app.use(webRoutes)
 
 
 app.listen(port, hostname, () => {
