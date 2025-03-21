@@ -7,6 +7,9 @@ const hostname = process.env.HOST_NAME;
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 
+//config req.body
+app.use(express.json()) // for json
+app.use(express.urlencoded({ extended: true })) // for form data
 
 //config template engine
 configViewEngine(app);
@@ -14,16 +17,7 @@ configViewEngine(app);
 //khai báo route
 app.use('/', webRoutes)
 
-//test connection 
-
-
-// simple query
-// connection.query(
-//     'SELECT * FROM Users u',
-//     function (err, results, fields) {
-//         console.log(">>> results = ", results); // results contains rows returned by server
-//     }
-// );
+//config post input
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
