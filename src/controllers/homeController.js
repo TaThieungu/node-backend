@@ -1,6 +1,6 @@
 const connection = require('../config/database');
 const mysql = require('mysql2/promise');
-const { getAllUsers } = require('../services/CRUDService');
+const { getAllUsers, getUserById } = require('../services/CRUDService');
 
 const getHomepage = async (req, res) => {
 
@@ -23,17 +23,16 @@ const postCreateUser = async (req, res) => {
 
     res.send('Create user success !')
 
-
 }
-
 
 const getCreatePage = (req, res) => {
     return res.render('create.ejs')
 }
 
-const getUpdatePage = (req, res) => {
+const getUpdatePage = async (req, res) => {
     const userId = req.params.userId;
-    return res.render('edit.ejs')
+    let user = await getUserById(userId);
+    return res.render('edit.ejs', { infUser: user })
 }
 
 
