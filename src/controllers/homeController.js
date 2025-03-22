@@ -1,6 +1,6 @@
 const connection = require('../config/database');
 const mysql = require('mysql2/promise');
-const { getAllUsers, getUserById } = require('../services/CRUDService');
+const { getAllUsers, getUserById, updateUserById } = require('../services/CRUDService');
 
 const getHomepage = async (req, res) => {
 
@@ -40,4 +40,17 @@ const getABC = (req, res) => {
     res.render('sample.ejs')
 }
 
-module.exports = { getHomepage, getABC, postCreateUser, getCreatePage, getUpdatePage }
+const postUpdateUser = async (req, res) => {
+    const { email, myname, city, userId } = req.body;
+
+
+    await updateUserById(email, myname, city, userId);
+
+    // return res.send('Update user success')
+    return res.redirect('/');
+}
+
+module.exports = {
+    getHomepage, getABC, postCreateUser,
+    getCreatePage, getUpdatePage, postUpdateUser
+}
