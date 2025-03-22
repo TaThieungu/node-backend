@@ -1,10 +1,11 @@
 const connection = require('../config/database');
 const mysql = require('mysql2/promise');
+const { getAllUsers } = require('../services/CRUDService');
 
+const getHomepage = async (req, res) => {
 
-const getHomepage = (req, res) => {
-
-    return res.render('home.ejs')
+    let results = await getAllUsers();
+    return res.render('home.ejs', { listUsers: results })
 }
 
 const postCreateUser = async (req, res) => {
