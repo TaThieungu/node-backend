@@ -1,13 +1,14 @@
 const connection = require('../config/database');
 const mysql = require('mysql2/promise');
 const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('../services/CRUDService');
-
 const User = require("../models/user");
 
 
 const getHomepage = async (req, res) => {
 
-    let results = []
+    // let results = [];
+    const results = await User.find({});
+    console.log("checkk results", results);
     return res.render('home.ejs', { listUsers: results })
 }
 
