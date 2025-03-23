@@ -6,7 +6,7 @@ const port = process.env.PORT || 8888;//port => hartcode . uat .pord
 const hostname = process.env.HOST_NAME;
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
-const mongoose = require('mongoose')
+const Kitten = require('./models/Kitten')
 
 //config req.body
 app.use(express.json()) // for json
@@ -18,11 +18,7 @@ configViewEngine(app);
 //khai báo route
 app.use('/', webRoutes);
 
-const kittySchema = new mongoose.Schema({
-    name: String
-});
-const Kitten = mongoose.model("Kitten", kittySchema);
-const cat = new Kitten({ name: 'La Anh Quan cat' });
+const cat = new Kitten({ name: 'meo meo' });
 cat.save();
 
 
