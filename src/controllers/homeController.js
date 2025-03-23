@@ -2,9 +2,12 @@ const connection = require('../config/database');
 const mysql = require('mysql2/promise');
 const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('../services/CRUDService');
 
+const User = require("../models/user");
+
+
 const getHomepage = async (req, res) => {
 
-    let results = await getAllUsers();
+    let results = []
     return res.render('home.ejs', { listUsers: results })
 }
 
@@ -13,13 +16,19 @@ const postCreateUser = async (req, res) => {
 
     let { email, myname, city } = req.body;
 
-    const [results, fields] = await connection.execute(
-        `INSERT INTO 
-        Users(email, name, city)
-        VALUES (?, ?, ?)`,
-        [email, myname, city],
+    // const [results, fields] = await connection.execute(
+    //     `INSERT INTO 
+    //     Users(email, name, city)
+    //     VALUES (?, ?, ?)`,
+    //     [email, myname, city],
 
-    );
+    // );
+
+    await User.create({
+        email: email,
+        name: myname,
+        city: city
+    })
 
     res.send('Create user success !')
 
