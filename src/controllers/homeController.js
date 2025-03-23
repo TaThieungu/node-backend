@@ -8,7 +8,6 @@ const getHomepage = async (req, res) => {
 
     // let results = [];
     const results = await User.find({});
-    console.log("checkk results", results);
     return res.render('home.ejs', { listUsers: results })
 }
 
