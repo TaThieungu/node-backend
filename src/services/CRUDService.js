@@ -28,10 +28,12 @@ const updateUserById = async (email, myname, city, userId) => {
 }
 
 const deleteUserById = async (userId) => {
-    const [results, fields] = await connection.execute(
-        `DELETE FROM Users WHERE id = ?`,
-        [userId],
-    );
+    // const [results, fields] = await connection.execute(
+    //     `DELETE FROM Users WHERE id = ?`,
+    //     [userId],
+    // );
+
+    await User.deleteOne({ _id: userId });
 }
 
 
