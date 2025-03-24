@@ -5,6 +5,7 @@ const app = express()
 const port = process.env.PORT || 8888;//port => hartcode . uat .pord
 const hostname = process.env.HOST_NAME;
 const webRoutes = require('./routes/web')
+const apiRoutes = require('./routes/api')
 const connection = require('./config/database')
 
 
@@ -17,6 +18,7 @@ configViewEngine(app);
 
 //khai báo route
 app.use('/', webRoutes);
+app.use('/v1/api/', apiRoutes);
 
 
 (async () => {
