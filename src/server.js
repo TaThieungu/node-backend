@@ -7,7 +7,10 @@ const hostname = process.env.HOST_NAME;
 const webRoutes = require('./routes/web')
 const apiRoutes = require('./routes/api')
 const connection = require('./config/database')
+const fileUpload = require('express-fileupload');
 
+// //config fileupload
+app.use(fileUpload());
 
 //config req.body
 app.use(express.json()) // for json

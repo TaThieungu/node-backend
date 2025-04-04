@@ -2,18 +2,15 @@ const express = require('express');
 
 const routerAPI = express.Router();
 
-const { getUsersAPI } = require('../controllers/apiController')
-
-routerAPI.get('/', (req, res) => {
-    res.send("hello world with apis")
-})
-
-routerAPI.get('/abc', (req, res) => {
-    res.status(200).json({
-        data: 'hello world first api'
-    })
-})
+const { getUsersAPI, postCreateUserApi, postUploadMultipleFile, postUploadSingleFile, putUpdateUserApi } = require('../controllers/apiController')
 
 routerAPI.get('/users', getUsersAPI)
 
+routerAPI.post('/users', postCreateUserApi);
+
+routerAPI.post('/file', postUploadSingleFile);
+
+routerAPI.post('/files', postUploadMultipleFile);
+
+routerAPI.put('/users', putUpdateUserApi);
 module.exports = routerAPI; // export default 

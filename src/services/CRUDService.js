@@ -16,15 +16,7 @@ const getUserById = async (userId) => {
 }
 
 const updateUserById = async (email, myname, city, userId) => {
-    // const [results, fields] = await connection.execute(
-    //     `UPDATE Users
-    //     SET email = ? , name = ?, city = ?
-    //     WHERE id = ?`,
-    //     [email, myname, city, userId],
-
-    // );
-
-    const res = await User.updateOne({ _id: userId }, { email, name: myname, city });
+    const res = await User.updateOne({ _id: userId }, { email: email, name: myname, city: city });
 }
 
 const deleteUserById = async (userId) => {

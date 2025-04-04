@@ -15,15 +15,6 @@ const postCreateUser = async (req, res) => {
     console.log(">>> check req.body : ", req.body)
 
     let { email, myname, city } = req.body;
-
-    // const [results, fields] = await connection.execute(
-    //     `INSERT INTO 
-    //     Users(email, name, city)
-    //     VALUES (?, ?, ?)`,
-    //     [email, myname, city],
-
-    // );
-
     await User.create({
         email: email,
         name: myname,
@@ -51,7 +42,6 @@ const getABC = (req, res) => {
 
 const postUpdateUser = async (req, res) => {
     const { email, myname, city, userId } = req.body;
-
 
     await updateUserById(email, myname, city, userId);
 
